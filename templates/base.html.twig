@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}Bucket-list{% endblock %}</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap" rel="stylesheet">
+
+        <link rel="icon" href="{{ asset('img/favicon.png') }}">
+
+        {% block stylesheet %}
+            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        {% endblock %}
+
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="header-top">
+                    <h1 class="header-logo">
+                        <a href="{{ path('main_home') }}" title="Go  back to Homepage">
+                            <img src="{{ asset('img/logo.svg') }}" alt="Bucket-list Logo">Bucket List
+                        </a>
+                    </h1>
+                    <nav class="user-nav">
+                        {% if app.user %}
+                            <a href="{{ path('app_logout') }}" title="Lougout">Logout (Hello {{ app.user.userIdentifier }})</a>
+                        {% else %}
+                            <a href="{{ path('app_register') }}" title="Create your account">Register</a>
+                            <a href="{{ path('app_login') }}" title="Login">Login</a>
+                        {% endif %}
+                    </nav>
+                </div>
+
+                <nav class="header-nav">
+                    <a href="{{ path('main_home') }}" title="Go  back to Homepage">Home</a>
+                    <a href="{{ path('wish_list') }}" title="All things to do">All Wishes</a>
+                    {% if app.user %}
+                        <a href="{{ path('wish_create') }}" title="Add your own ideas!">Add yours!</a>
+                    {% endif %}
+                    <a href="{{ path('main_about_us') }}" title="About Us">About Us</a>
+                </nav>
+            </div>
+        </header>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <main>
+            <div class="container">
+                {% block body %}{% endblock %}
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                &copy; Bucket-List {{ "now"|date('Y') }}
+            </div>
+        </footer>
+    </body>
+</html>

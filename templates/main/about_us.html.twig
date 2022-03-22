@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+About Us | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h2>About Us</h2>
+    <section class="team-members">
+        {% for member in teamMembers %}
+            <article>
+                <img src="{{ member.picture }}" alt="{{ member.lastname }}">
+                <div>
+                    <h3>{{ member.firstname }} {{ member.lastname }} {{ member.firstname ==
+                        "Fabien" ? "&#128151" : "" }}</h3>
+                    <p>Creator of {{ member.creatorOf }}</p>
+                    <p>Date of birth: {{ member.dateOfBirth|date("d-m-Y") }}</p>
+                    <p>{{ member.description }}</p>
+                </div>
+
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}
+

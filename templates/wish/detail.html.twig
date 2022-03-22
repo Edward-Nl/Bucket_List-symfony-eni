@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Titre de l'idée ici ! | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container-vh">
+        <h2>{{ wish.title }} {{ wish.category.name }}</h2>
+
+        <p class="wish-credit">Created by {{ wish.author }} on {{ wish.dateCreated|format_datetime('full','short',locale='fr') }}</p>
+
+        <div>{{ wish.description|nl2br }}</div>
+
+        <div class="wish-a"><a href="{{ path('wish_delete', {'id': wish.id}) }}" title="Delete this wish">Delete this wish ! </a></div>
+    </div>
+
+{% endblock %}
+
