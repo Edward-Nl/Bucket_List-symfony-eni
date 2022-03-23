@@ -48,9 +48,9 @@ class WishController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $entityManager, Censurator $censurator): Response{
         $wish = new Wish();
-        $wishForm = $this->createForm(WishType::class, $wish);
         $currentUserUsername = $this->getUser()->getUserIdentifier();
         $wish->setAuthor($currentUserUsername);
+        $wishForm = $this->createForm(WishType::class, $wish);
 
         $wishForm->handleRequest($request);
 

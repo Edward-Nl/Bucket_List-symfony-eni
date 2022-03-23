@@ -11,8 +11,7 @@ About Us | {{ parent() }}
             <article>
                 <img src="{{ member.picture }}" alt="{{ member.lastname }}">
                 <div>
-                    <h3>{{ member.firstname }} {{ member.lastname }} {{ member.firstname ==
-                        "Fabien" ? "&#128151" : "" }}</h3>
+                    <h3>{{ member.firstname }} {{ member.lastname }} </h3>
                     <p>Creator of {{ member.creatorOf }}</p>
                     <p>Date of birth: {{ member.dateOfBirth|date("d-m-Y") }}</p>
                     <p>{{ member.description }}</p>
